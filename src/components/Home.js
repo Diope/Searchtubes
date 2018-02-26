@@ -16,7 +16,7 @@ class Home extends Component {
   componentDidMount () {
     ytsearch({
       key: KEY.youtubeKey,
-      term: 'Beyonce'
+      term: 'Monster Hunter World'
     }, (videos) => {
       this.setState({
         videos
@@ -27,8 +27,8 @@ class Home extends Component {
   render () {
     return (
       <div>
-        <VideoList videos={this.state.videos}/>
         <SearchBar/>
+        <VideoList videos={this.state.videos}/>
       </div>
     )
   }
