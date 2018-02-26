@@ -2,7 +2,8 @@ const KEY = require('../../constants.js');
 
 import React, {Component} from 'react';
 import SearchBar from './SearchBar';
-import VideoList from './VideoList'
+import VideoList from './VideoList';
+import VideoDetail from './VideoDetail';
 
 import ytsearch from 'youtube-api-search';
 
@@ -28,6 +29,7 @@ class Home extends Component {
     return (
       <div>
         <SearchBar/>
+        <VideoDetail video={this.state.videos[0]}/>
         <VideoList videos={this.state.videos}/>
       </div>
     )
