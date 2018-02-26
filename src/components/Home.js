@@ -11,16 +11,22 @@ class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { videos: [] }
+    this.state = { 
+      videos: [],
+      selectedVid: null
+     }
+     this.videoSearch('Digital Foundry')
   }
 
-  componentDidMount () {
+
+  videoSearch(term) {
     ytsearch({
       key: KEY.youtubeKey,
-      term: 'Monster Hunter World'
+      term: term
     }, (videos) => {
       this.setState({
-        videos
+        videos,
+        selectedVid: videos[0]
       });
     });
   }
@@ -28,9 +34,12 @@ class Home extends Component {
   render () {
     return (
       <div>
-        <SearchBar/>
-        <VideoDetail video={this.state.videos[0]}/>
-        <VideoList videos={this.state.videos}/>
+        <SearchBar onSearchTermChange={term => this.videoSearch(term)}/>
+        <VideoDetail video={this.state.selectedVid}/>
+        <VideoList 
+          videos={this.state.videos}
+          onVideoSelect={selectedVid => this.setState({selectedVid})}
+          />
       </div>
     )
   }

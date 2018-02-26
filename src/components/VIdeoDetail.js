@@ -9,7 +9,8 @@ const VideoDetail = ({video}) => {
   const videoId = video.id.videoId;
   const tempDescrip = video.snippet.description
   const descripString = tempDescrip.substring(0,120);
-  const finalDescriptionString = descripString + "..."
+  const finalDescriptionString = descripString + "...";
+  
   const url = `https://youtube.com/embed/${videoId}`
 
   return (
