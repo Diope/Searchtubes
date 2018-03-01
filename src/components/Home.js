@@ -6,6 +6,7 @@ import VideoList from './VideoList';
 import VideoDetail from './VideoDetail';
 
 import ytsearch from 'youtube-api-search';
+import _ from 'lodash';
 
 class Home extends Component {
   constructor(props) {
@@ -32,9 +33,12 @@ class Home extends Component {
   }
 
   render () {
+
+    const videoSearch = _.debounce((term) => {this.videoSearch(term)}, 270);
+
     return (
       <div>
-        <SearchBar onSearchTermChange={term => this.videoSearch(term)}/>
+        <SearchBar onSearchTermChange={videoSearch}/>
         <VideoDetail video={this.state.selectedVid}/>
         <VideoList 
           videos={this.state.videos}
